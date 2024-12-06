@@ -332,7 +332,7 @@ namespace IIMS_Final_Project
 
         private void button10_Click(object sender, EventArgs e)
         {
-            Login loginForm = new Login();
+            AdminLogin loginForm = new AdminLogin();
             loginForm.Show();  // Show the Login form
             this.Hide();  // Optionally hide the current form
         }

@@ -1,6 +1,6 @@
 ﻿namespace IIMS_Final_Project
 {
-    partial class Login
+    partial class AdminLogin
     {
         /// <summary>
         /// Required designer variable.

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace IIMS_Final_Project
 {
-    public partial class Login : Form
+    public partial class AdminLogin : Form
     {
-        public Login()
+        public AdminLogin()
         {
             InitializeComponent();
         }
