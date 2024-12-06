@@ -58,5 +58,17 @@ namespace IIMS_Final_Project
             reportsForm.Show();  // Show the Reports form
             this.Hide();
         }
+
+        private void Dashboard_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            DepartmentManagement departmentManagementForm = new DepartmentManagement();
+            departmentManagementForm.Show();
+            this.Hide();
+        }
     }
 }
