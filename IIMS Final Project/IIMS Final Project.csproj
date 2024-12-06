@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BackupAndRecovery.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BackupAndRecovery.Designer.cs">
+      <DependentUpon>BackupAndRecovery.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dashboard.cs">
       <SubType>Form</SubType>
     </Compile>
