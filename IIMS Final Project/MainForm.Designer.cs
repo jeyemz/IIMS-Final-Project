@@ -60,7 +60,7 @@
             // btn_Admin
             // 
             this.btn_Admin.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_Admin.Location = new System.Drawing.Point(256, 130);
+            this.btn_Admin.Location = new System.Drawing.Point(276, 130);
             this.btn_Admin.Name = "btn_Admin";
             this.btn_Admin.Size = new System.Drawing.Size(86, 73);
             this.btn_Admin.TabIndex = 91;
