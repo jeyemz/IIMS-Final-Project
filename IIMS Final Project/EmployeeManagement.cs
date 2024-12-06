@@ -24,27 +24,26 @@ namespace IIMS_Final_Project
         }
         private void LoadEmployees()
         {
-            try
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
-                string query = "SELECT employee_id, first_name, last_name, email, phone_number, department_name, hire_date " +
-                               "FROM Employee " +
-                               "JOIN Department ON Employee.department_id = Department.department_id";
-
-                // Using a DataAdapter to fetch the data
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
-
-                // Open the connection and fill the DataTable
-                connection.Open();
-                dataAdapter.Fill(dataTable);
-                dataGridView1.DataSource = dataTable;
-                connection.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
+                try
+                {
+                    conn.Open();
+                    string query = "SELECT e.employee_id, e.first_name, e.last_name, e.email, d.department_name, e.hire_date " +
+                                   "FROM Employee e LEFT JOIN Department d ON e.department_id = d.department_id";
+                    MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+                    dataGridView1.DataSource = dt;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
             }
         }
+
+
 
 
 
@@ -100,97 +99,30 @@ namespace IIMS_Final_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string query = "INSERT INTO Employee (first_name, last_name, email, phone_number, department_id, hire_date) " +
-                               "VALUES (@first_name, @last_name, @email, @phone_number, @department_id, @hire_date)";
+            string firstName = textBox1.Text;
+            string lastName = textBox2.Text;
+            string email = textBox4.Text;
+            int departmentId = Convert.ToInt32(comboBox1.SelectedValue); // Assuming you have a combo box for departments
+            DateTime hireDate = dateTimePicker1.Value;
 
-                MySqlCommand cmd = new MySqlCommand(query, connection);
-                cmd.Parameters.AddWithValue("@first_name", textBox1.Text);
-                cmd.Parameters.AddWithValue("@last_name", textBox2.Text);
-                cmd.Parameters.AddWithValue("@email", textBox3.Text);
-                cmd.Parameters.AddWithValue("@phone_number", textBox4.Text);
-                cmd.Parameters.AddWithValue("@department_id", comboBox1.SelectedValue);
-                cmd.Parameters.AddWithValue("@hire_date", dateTimePicker1.Value);
+            string query = "INSERT INTO Employee (first_name, last_name, email, department_id, hire_date) " +
+                           "VALUES (@firstName, @lastName, @email, @departmentId, @hireDate)";
 
-                connection.Open();
-                cmd.ExecuteNonQuery();
-                connection.Close();
-
-                // Refresh the DataGridView after adding
-                LoadEmployees();
-                MessageBox.Show("Employee added successfully.");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private void button2_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                if (dataGridView1.SelectedRows.Count > 0)
-                {
-                    string query = "UPDATE Employee SET first_name = @first_name, last_name = @last_name, email = @email, " +
-                                   "phone_number = @phone_number, department_id = @department_id, hire_date = @hire_date " +
-                                   "WHERE employee_id = @employee_id";
-
-                    MySqlCommand cmd = new MySqlCommand(query, connection);
-                    cmd.Parameters.AddWithValue("@first_name", textBox1.Text);
-                    cmd.Parameters.AddWithValue("@last_name", textBox2.Text);
-                    cmd.Parameters.AddWithValue("@email", textBox3.Text);
-                    cmd.Parameters.AddWithValue("@phone_number", textBox4.Text);
-                    cmd.Parameters.AddWithValue("@department_id", comboBox1.SelectedValue);
-                    cmd.Parameters.AddWithValue("@hire_date", dateTimePicker1.Value);
-                    cmd.Parameters.AddWithValue("@employee_id", dataGridView1.SelectedRows[0].Cells["employee_id"].Value);
-
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
-                    connection.Close();
-
-                    // Refresh the DataGridView after updating
-                    LoadEmployees();
-                    MessageBox.Show("Employee updated successfully.");
-                }
-                else
-                {
-                    MessageBox.Show("Please select an employee to update.");
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-        }
-
-        private void button3_Click(object sender, EventArgs e)
-        {
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 try
                 {
-                    if (dataGridView1.SelectedRows.Count > 0)
-                    {
-                        int employeeId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["employee_id"].Value);
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@departmentId", departmentId);
+                    cmd.Parameters.AddWithValue("@hireDate", hireDate);
 
-                        string query = "DELETE FROM Employee WHERE employee_id = @employee_id";
-
-                        MySqlCommand cmd = new MySqlCommand(query, connection);
-                        cmd.Parameters.AddWithValue("@employee_id", employeeId);
-
-                        connection.Open();
-                        cmd.ExecuteNonQuery();
-                        connection.Close();
-
-                        // Refresh the DataGridView after deletion
-                        LoadEmployees();
-                        MessageBox.Show("Employee deleted successfully.");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please select an employee to delete.");
-                    }
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Employee added successfully!");
+                    LoadEmployees(); // Refresh the DataGridView
                 }
                 catch (Exception ex)
                 {
@@ -198,92 +130,168 @@ namespace IIMS_Final_Project
                 }
             }
         }
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string query = "SELECT e.first_name, e.last_name, e.email, e.phone_number, e.hire_date, " +
-               "d.department_name, e.employee_id, p.project_name, t.task_name, t.task_status, t.due_date " +
-               "FROM Employee e " +
-               "JOIN Department d ON e.department_id = d.department_id " + // Join with Department table
-               "JOIN Task t ON e.employee_id = t.assigned_to " +
-               "JOIN Project p ON t.project_id = p.project_id";
 
-            // Create a MySqlDataAdapter and a DataTable
-            MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection);
-            DataTable dataTable = new DataTable();
+        
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            // Ensure that a row is selected
+            if (dataGridView1.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Please select an employee to delete.");
+                return;
+            }
+
+            // Get the row index of the selected cell
+            int selectedRowIndex = dataGridView1.SelectedCells[0].RowIndex;
+
+            // Get the employee ID from the selected row
+            int employeeId = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["employee_id"].Value);
+
+            // Prepare the delete query
+            string query = "DELETE FROM Employee WHERE employee_id = @employeeId";
+
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            {
+                try
+                {
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@employeeId", employeeId);
+
+                    // Execute the delete command
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Employee deleted successfully!");
+                        LoadEmployees(); // Refresh the DataGridView
+                    }
+                    else
+                    {
+                        MessageBox.Show("No employee found with the given ID.");
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    MessageBox.Show("MySQL Error: " + ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Error: " + ex.Message);
+                }
+            }
+        }
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedCells.Count == 0)
+            {
+                MessageBox.Show("Please select an employee to update.");
+                return;
+            }
+
+            // Step 2: Get the employee ID from the selected row
+            int selectedRowIndex = dataGridView1.SelectedCells[0].RowIndex;
+            int employeeId;
+            if (!int.TryParse(dataGridView1.Rows[selectedRowIndex].Cells["employee_id"].Value.ToString(), out employeeId))
+            {
+                MessageBox.Show("Invalid employee ID.");
+                return;
+            }
+
+            // Step 3: Retrieve the data from the input fields
+            string firstName = textBox1.Text.Trim();
+            string lastName = textBox2.Text.Trim();
+            string email = textBox4.Text.Trim();
+            if (comboBox1.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a valid department.");
+                return;
+            }
+            int departmentId = Convert.ToInt32(comboBox1.SelectedValue);
+            DateTime hireDate = dateTimePicker1.Value;
+
+            // Step 4: Validate fields before updating
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Please fill in all required fields (First Name, Last Name, Email).");
+                return;
+            }
+
+            // Step 5: Prepare the SQL UPDATE query
+            string query = "UPDATE Employee SET first_name = @firstName, last_name = @lastName, email = @email, " +
+                           "department_id = @departmentId, hire_date = @hireDate WHERE employee_id = @employeeId";
 
             try
             {
-                // Open the connection
-                connection.Open();
-
-                // Fill the DataTable with data
-                dataAdapter.Fill(dataTable);
-
-                // Check if the DataTable has any rows
-                if (dataTable.Rows.Count > 0)
+                using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
-                    // Bind the DataTable to the DataGridView
-                    dataGridView1.DataSource = dataTable;
+                    conn.Open();
+                    MySqlCommand cmd = new MySqlCommand(query, conn);
 
-                    // Optionally, customize column headers (if needed)
-                    dataGridView1.Columns["first_name"].HeaderText = "Employee First Name";
-                    dataGridView1.Columns["last_name"].HeaderText = "Employee Last Name";
-                    dataGridView1.Columns["email"].HeaderText = "Email";
-                    dataGridView1.Columns["phone_number"].HeaderText = "Phone Number";
-                    dataGridView1.Columns["hire_date"].HeaderText = "Hire Date";
-                    dataGridView1.Columns["department_name"].HeaderText = "Department";
-                    dataGridView1.Columns["employee_id"].HeaderText = "Employee ID";
-                    dataGridView1.Columns["project_name"].HeaderText = "Project Name";
-                    dataGridView1.Columns["task_name"].HeaderText = "Task Name";
-                    dataGridView1.Columns["task_status"].HeaderText = "Task Status";
-                    dataGridView1.Columns["due_date"].HeaderText = "Due Date";
-                }
-                else
-                {
-                    // Show a message if no data is returned
-                    MessageBox.Show("No employee task data found.");
-                }
+                    // Add parameters to the SQL query
+                    cmd.Parameters.AddWithValue("@firstName", firstName);
+                    cmd.Parameters.AddWithValue("@lastName", lastName);
+                    cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@departmentId", departmentId);
+                    cmd.Parameters.AddWithValue("@hireDate", hireDate);
+                    cmd.Parameters.AddWithValue("@employeeId", employeeId);
 
-                // Close the connection after executing the query
-                connection.Close();
+                    // Execute the query
+                    int rowsAffected = cmd.ExecuteNonQuery();
+
+                    // Check if any rows were updated
+                    if (rowsAffected > 0)
+                    {
+                        MessageBox.Show("Employee updated successfully!");
+                        LoadEmployees(); // Refresh the DataGridView
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error: No employee found with the provided ID.");
+                    }
+                }
+            }
+            catch (MySqlException ex)
+            {
+                // Handle MySQL-specific errors
+                MessageBox.Show("MySQL Error: " + ex.Message);
+            }
+            catch (FormatException ex)
+            {
+                // Handle invalid format (e.g., invalid department ID or hire date)
+                MessageBox.Show("Invalid input format: " + ex.Message);
             }
             catch (Exception ex)
             {
-                // Handle any exceptions (e.g., connection issues, query errors)
+                // Handle general errors
                 MessageBox.Show("Error: " + ex.Message);
             }
+        }
+
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            LoadEmployees();
         }
 
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            try
+            if (e.RowIndex >= 0) // Ensure row is selected
             {
-                if (e.RowIndex >= 0)
-                {
-                    DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
-
-                    // Ensure the cells are not null before assigning their values to the textboxes
-                    textBox1.Text = row.Cells["first_name"].Value?.ToString();
-                    textBox2.Text = row.Cells["last_name"].Value?.ToString();
-                    textBox3.Text = row.Cells["email"].Value?.ToString();
-                    textBox4.Text = row.Cells["phone_number"].Value?.ToString();
-                    comboBox1.SelectedValue = row.Cells["department_id"].Value?.ToString();
-                    dateTimePicker1.Value = row.Cells["hire_date"].Value != DBNull.Value ? Convert.ToDateTime(row.Cells["hire_date"].Value) : DateTime.Now;
-                }
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                textBox1.Text = row.Cells["first_name"].Value.ToString();
+                textBox2.Text = row.Cells["last_name"].Value.ToString();
+                textBox4.Text = row.Cells["email"].Value.ToString();
+                dateTimePicker1.Value = Convert.ToDateTime(row.Cells["hire_date"].Value);
+                // Set selected department in comboBox (if available)
+                comboBox1.SelectedValue = row.Cells["department_id"].Value;
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Error: " + ex.Message);
-            }
-
         }
 
         // Form load event to load employees into the DataGridView
-        private void EmployeeManagement_Load(object sender, EventArgs e)
-        {
-            LoadEmployees();
-        }
+     
 
         private void button5_Click_1(object sender, EventArgs e)
         {
