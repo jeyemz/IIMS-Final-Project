@@ -51,6 +51,13 @@ namespace IIMS_Final_Project
                 MessageBox.Show("Invalid username or password. Please try again.");
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            MainForm loginForm = new MainForm();
+            loginForm.Show();  // Show the Login form
+            this.Hide();  // Optionally hide the current form
+        }
     }
     
 }

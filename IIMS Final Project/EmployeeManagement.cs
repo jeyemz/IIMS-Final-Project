@@ -17,11 +17,15 @@ namespace IIMS_Final_Project
     {
         string connectionString = "Server=localhost;Database=iims_finalproject;User ID=root;Password=;";
         MySqlConnection connection;
+
         public EmployeeManagement()
         {
             InitializeComponent();
             connection = new MySqlConnection(connectionString);
+            this.Load += new System.EventHandler(this.Form_Load);
+
         }
+
         private void LoadEmployees()
         {
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -84,7 +88,7 @@ namespace IIMS_Final_Project
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+          
         }
 
         private void textBox5_TextChanged(object sender, EventArgs e)
@@ -96,15 +100,43 @@ namespace IIMS_Final_Project
         {
 
         }
+        private void Form_Load(object sender, EventArgs e)
+        {
+            // Fetch department data from your database and bind to ComboBox
+            string query = "SELECT department_id, department_name FROM Department";
+            MySqlDataAdapter adapter = new MySqlDataAdapter(query, connectionString);
+            DataTable dtDepartments = new DataTable();
+            adapter.Fill(dtDepartments);
+
+            // Bind ComboBox
+            comboBox1.DataSource = dtDepartments;
+            comboBox1.ValueMember = "department_id";  // ID will be used for selection
+            comboBox1.DisplayMember = "department_name"; // Name will be displayed to the user
+        }
 
         private void button1_Click(object sender, EventArgs e)
         {
             string firstName = textBox1.Text;
             string lastName = textBox2.Text;
             string email = textBox4.Text;
-            int departmentId = Convert.ToInt32(comboBox1.SelectedValue); // Assuming you have a combo box for departments
+            int departmentId = 0;
+
+            // Check if a department is selected
+            if (comboBox1.SelectedIndex == -1 || comboBox1.SelectedValue == null)
+            {
+                MessageBox.Show("Please select a department.");
+                return; // Exit method if no department is selected
+            }
+            else
+            {
+                // Display the selected department ID for debugging
+                MessageBox.Show("Selected Department ID: " + comboBox1.SelectedValue.ToString());
+                departmentId = Convert.ToInt32(comboBox1.SelectedValue); // Get the selected department ID
+            }
+
             DateTime hireDate = dateTimePicker1.Value;
 
+            // Insert SQL query
             string query = "INSERT INTO Employee (first_name, last_name, email, department_id, hire_date) " +
                            "VALUES (@firstName, @lastName, @email, @departmentId, @hireDate)";
 
@@ -114,24 +146,30 @@ namespace IIMS_Final_Project
                 {
                     conn.Open();
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@firstName", firstName);
-                    cmd.Parameters.AddWithValue("@lastName", lastName);
-                    cmd.Parameters.AddWithValue("@email", email);
-                    cmd.Parameters.AddWithValue("@departmentId", departmentId);
-                    cmd.Parameters.AddWithValue("@hireDate", hireDate);
 
+                    // Add parameters to the SQL command to prevent SQL injection
+                    cmd.Parameters.Add("@firstName", MySqlDbType.VarChar).Value = firstName;
+                    cmd.Parameters.Add("@lastName", MySqlDbType.VarChar).Value = lastName;
+                    cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@departmentId", MySqlDbType.Int32).Value = departmentId;
+                    cmd.Parameters.Add("@hireDate", MySqlDbType.Date).Value = hireDate;
+
+                    // Execute the query
                     cmd.ExecuteNonQuery();
                     MessageBox.Show("Employee added successfully!");
-                    LoadEmployees(); // Refresh the DataGridView
+                    LoadEmployees(); // Refresh the DataGridView with the latest data
                 }
                 catch (Exception ex)
                 {
+                    // Show error message if the operation fails
                     MessageBox.Show("Error: " + ex.Message);
                 }
             }
         }
 
-        
+
+
+
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -336,7 +374,13 @@ namespace IIMS_Final_Project
             loginForm.Show();  // Show the Login form
             this.Hide();  // Optionally hide the current form
         }
+
+        private void EmployeeManagement_Load(object sender, EventArgs e)
+        {
+        
+        }
+    }
     }
 
-}
+
 
