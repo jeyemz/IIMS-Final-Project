@@ -70,5 +70,12 @@ namespace IIMS_Final_Project
             departmentManagementForm.Show();
             this.Hide();
         }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            BackupAndRecovery BackupAndRecovery = new BackupAndRecovery();
+            BackupAndRecovery.Show();
+            this.Hide();
+        }
     }
 }

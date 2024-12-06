@@ -163,6 +163,9 @@
     <Compile Include="TaskManagement.Designer.cs">
       <DependentUpon>TaskManagement.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BackupAndRecovery.resx">
+      <DependentUpon>BackupAndRecovery.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.cs</DependentUpon>
     </EmbeddedResource>
@@ -187,6 +190,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Reports.resx">
+      <DependentUpon>Reports.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
