@@ -379,6 +379,13 @@ namespace IIMS_Final_Project
         {
         
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            DepartmentManagement DepartmentManagement = new DepartmentManagement();
+            DepartmentManagement.Show();  // Show the Login form
+            this.Hide();  // Optionally hide the current form
+        }
     }
     }
 

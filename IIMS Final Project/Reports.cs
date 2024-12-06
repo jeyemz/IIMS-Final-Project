@@ -170,5 +170,54 @@ namespace IIMS_Final_Project
             dashboard.Show();
             this.Hide();
         }
+
+        private void button11_Click(object sender, EventArgs e)
+        {
+            DepartmentManagement DepartmentManagement = new DepartmentManagement();
+            DepartmentManagement.Show();  // Show the Login form
+            this.Hide();  // Optionally hide the current form
+        }
+
+        private void button10_Click(object sender, EventArgs e)
+        {
+            AdminLogin loginForm = new AdminLogin();
+            loginForm.Show();  // Show the Login form
+            this.Hide();  // Optionally hide the current form
+        }
+
+        private void button9_Click(object sender, EventArgs e)
+        {
+            Reports reportsForm = new Reports();
+            reportsForm.Show();  // Show the Reports form
+            this.Hide();  // Optionally hide the current form
+        }
+
+        private void button8_Click(object sender, EventArgs e)
+        {
+            TaskManagement taskManagementForm = new TaskManagement();
+            taskManagementForm.Show();  // Show the Task Management form
+            this.Hide();  // Optionally hide the current form
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            ProjectManagement projectManagementForm = new ProjectManagement();
+            projectManagementForm.Show();  // Show the Project Management form
+            this.Hide();  // Optionally hide the current form
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            EmployeeManagement employeeManagementForm = new EmployeeManagement();
+            employeeManagementForm.Show();  // Show the Employee Management form
+            this.Hide();
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            Dashboard dashboardForm = new Dashboard();
+            dashboardForm.Show();  // Show the Dashboard form
+            this.Hide();
+        }
     }
 }
