@@ -110,5 +110,15 @@ namespace IIMS_Final_Project
                 e.Handled = true;
             }
         }
+
+        private void txtbox_Password_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_Password_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

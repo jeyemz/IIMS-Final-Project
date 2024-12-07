@@ -203,5 +203,10 @@ namespace IIMS_Final_Project
             dtpStartDate.Value = DateTime.Now;
             dtpEndDate.Value = DateTime.Now;
         }
+
+        private void lblManagerID_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

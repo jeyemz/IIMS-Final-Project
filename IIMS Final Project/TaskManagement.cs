@@ -20,7 +20,6 @@ namespace IIMS_Final_Project
         public TaskManagement()
         {
             InitializeComponent();
-            InitializeComponent();
             LoadProjects();
             LoadEmployees();
             LoadTasks();
@@ -43,7 +42,7 @@ namespace IIMS_Final_Project
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT project_id, project_name FROM Project"; // Assuming you have a Project table
+                string query = "SELECT project_id, project_name FROM Project";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -56,10 +55,9 @@ namespace IIMS_Final_Project
                 reader.Close();
             }
 
-            // Set the ComboBox data source
             comboBox1.DataSource = projects;
-            comboBox1.DisplayMember = "Value";  // This will display the project name
-            comboBox1.ValueMember = "Key";     // This will hold the project ID
+            comboBox1.DisplayMember = "Value";  // Display project name
+            comboBox1.ValueMember = "Key";     // Hold project ID
         }
 
 
@@ -71,7 +69,7 @@ namespace IIMS_Final_Project
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT employee_id, CONCAT(first_name, ' ', last_name) AS employee_name FROM Employee WHERE status = 'Active'";
+                string query = "SELECT employee_id, CONCAT(first_name, ' ', last_name) AS employee_name FROM Employee";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 MySqlDataReader reader = cmd.ExecuteReader();
 
@@ -84,10 +82,9 @@ namespace IIMS_Final_Project
                 reader.Close();
             }
 
-            // Set the ComboBox data source
             comboBox2.DataSource = employees;
-            comboBox2.DisplayMember = "Value";  // This will display the employee name
-            comboBox2.ValueMember = "Key";     // This will hold the employee ID
+            comboBox2.DisplayMember = "Value";  // Display employee name
+            comboBox2.ValueMember = "Key";     // Hold employee ID
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -117,19 +114,16 @@ namespace IIMS_Final_Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // Check if an item is selected in comboBox1 and comboBox2
             if (comboBox1.SelectedItem == null || comboBox2.SelectedItem == null)
             {
                 MessageBox.Show("Please select a project and an employee.");
                 return;
             }
 
-            // Cast the selected item to KeyValuePair<int, string> to access the Value and Key
             int projectId = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
             int assignedTo = ((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
             string taskName = textBox1.Text;
             DateTime dueDate = dateTimePicker1.Value;
-            string status = "Pending"; // Default status
 
             if (string.IsNullOrEmpty(taskName) || projectId == 0 || assignedTo == 0)
             {
@@ -140,84 +134,66 @@ namespace IIMS_Final_Project
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "INSERT INTO Task (task_name, assigned_to, project_id, status, due_date) " +
-                               "VALUES (@taskName, @assignedTo, @projectId, @status, @dueDate)";
+                string query = "INSERT INTO Task (task_name, assigned_to, project_id, due_date) " +
+                               "VALUES (@taskName, @assignedTo, @projectId, @dueDate)";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@taskName", taskName);
                 cmd.Parameters.AddWithValue("@assignedTo", assignedTo);
                 cmd.Parameters.AddWithValue("@projectId", projectId);
-                cmd.Parameters.AddWithValue("@status", status);
                 cmd.Parameters.AddWithValue("@dueDate", dueDate);
                 cmd.ExecuteNonQuery();
             }
 
             MessageBox.Show("Task added successfully.");
-            LoadTasks(); // Refresh the DataGridView
+            LoadTasks(); // Refresh DataGridView
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            // Check if a task is selected in DataGridView
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a task to edit.");
                 return;
             }
 
-            // Get the selected task ID
             int taskId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["task_id"].Value);
-
-            // Get the values from the form (ComboBoxes, TextBox, DateTimePicker)
             string taskName = textBox1.Text;
 
-            // Ensure comboBox1 has a valid selection
-            if (comboBox1.SelectedValue == null)
+            if (comboBox1.SelectedValue == null || comboBox2.SelectedValue == null)
             {
-                MessageBox.Show("Please select a project.");
+                MessageBox.Show("Please select a project and an employee.");
                 return;
             }
-            int projectId = (int)comboBox1.SelectedValue; // Get the selected project ID
 
-            // Ensure comboBox2 has a valid selection
-            if (comboBox2.SelectedValue == null)
-            {
-                MessageBox.Show("Please select an employee.");
-                return;
-            }
-            int assignedTo = (int)comboBox2.SelectedValue; // Get the selected employee ID
-
+            int projectId = (int)comboBox1.SelectedValue;
+            int assignedTo = (int)comboBox2.SelectedValue;
             DateTime dueDate = dateTimePicker1.Value;
-            string status = "Pending"; // Default status
 
-            // Check if all fields are filled
             if (string.IsNullOrEmpty(taskName) || projectId == 0 || assignedTo == 0)
             {
                 MessageBox.Show("Please fill in all fields.");
                 return;
             }
 
-            // Update the task in the database
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "UPDATE Task SET task_name = @taskName, assigned_to = @assignedTo, project_id = @projectId, status = @status, due_date = @dueDate WHERE task_id = @taskId";
+                string query = "UPDATE Task SET task_name = @taskName, assigned_to = @assignedTo, project_id = @projectId, due_date = @dueDate WHERE task_id = @taskId";
                 MySqlCommand cmd = new MySqlCommand(query, conn);
                 cmd.Parameters.AddWithValue("@taskName", taskName);
                 cmd.Parameters.AddWithValue("@assignedTo", assignedTo);
                 cmd.Parameters.AddWithValue("@projectId", projectId);
-                cmd.Parameters.AddWithValue("@status", status);
                 cmd.Parameters.AddWithValue("@dueDate", dueDate);
                 cmd.Parameters.AddWithValue("@taskId", taskId);
                 cmd.ExecuteNonQuery();
             }
 
             MessageBox.Show("Task updated successfully.");
-            LoadTasks(); // Refresh the DataGridView
+            LoadTasks();
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            // Check if a task is selected in DataGridView
             if (dataGridView1.SelectedRows.Count == 0)
             {
                 MessageBox.Show("Please select a task to delete.");
@@ -243,10 +219,10 @@ namespace IIMS_Final_Project
 
         private void LoadTasks()
         {
-            using (MySqlConnection conn = new MySqlConnection(connectionString)) // Use the actual connection string variable
+            using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
                 conn.Open();
-                string query = "SELECT t.task_id, t.task_name, t.status, t.due_date, e.first_name, e.last_name, p.project_name " +
+                string query = "SELECT t.task_id, t.task_name, t.due_date, e.first_name, e.last_name, p.project_name " +
                                "FROM Task t " +
                                "JOIN Employee e ON t.assigned_to = e.employee_id " +
                                "JOIN Project p ON t.project_id = p.project_id";
@@ -254,12 +230,20 @@ namespace IIMS_Final_Project
                 DataTable dt = new DataTable();
                 da.Fill(dt);
 
-                // Set DataSource
                 dataGridView1.DataSource = dt;
 
-                // Hide the task_id column (assuming task_id is the first column)
                 dataGridView1.Columns["task_id"].Visible = false;
             }
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
