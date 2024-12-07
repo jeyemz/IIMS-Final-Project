@@ -340,7 +340,6 @@ namespace IIMS_Final_Project
 
         private void button6_Click(object sender, EventArgs e)
         {
-
             EmployeeManagement employeeManagementForm = new EmployeeManagement();
             employeeManagementForm.Show();  // Show the Employee Management form
             this.Hide();

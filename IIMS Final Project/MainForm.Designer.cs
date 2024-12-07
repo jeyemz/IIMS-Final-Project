@@ -49,11 +49,12 @@
             // 
             // btn_Exit
             // 
-            this.btn_Exit.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Exit.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Exit.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Exit.Location = new System.Drawing.Point(408, 3);
+            this.btn_Exit.Location = new System.Drawing.Point(359, 6);
             this.btn_Exit.Name = "btn_Exit";
-            this.btn_Exit.Size = new System.Drawing.Size(51, 27);
+            this.btn_Exit.Size = new System.Drawing.Size(100, 30);
             this.btn_Exit.TabIndex = 92;
             this.btn_Exit.Text = "Exit";
             this.btn_Exit.UseVisualStyleBackColor = false;

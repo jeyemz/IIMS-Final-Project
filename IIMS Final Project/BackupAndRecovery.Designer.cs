@@ -43,6 +43,7 @@
             this.btn_BrowseRestore = new System.Windows.Forms.Button();
             this.txtbox_RestorePath = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.button2 = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -70,7 +71,7 @@
             this.tabPage1.Controls.Add(this.lbl_Title);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(538, 170);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Backup";
@@ -95,7 +96,7 @@
             this.btn_BackToMenu.Name = "btn_BackToMenu";
             this.btn_BackToMenu.Size = new System.Drawing.Size(100, 30);
             this.btn_BackToMenu.TabIndex = 82;
-            this.btn_BackToMenu.Text = "Menu";
+            this.btn_BackToMenu.Text = "Return";
             this.btn_BackToMenu.UseVisualStyleBackColor = false;
             this.btn_BackToMenu.Click += new System.EventHandler(this.btn_BackToMenu_Click);
             // 
@@ -146,6 +147,7 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.Control;
+            this.tabPage2.Controls.Add(this.button2);
             this.tabPage2.Controls.Add(this.label2);
             this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.btn_Restore);
@@ -154,7 +156,7 @@
             this.tabPage2.Controls.Add(this.label1);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(538, 170);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Restore";
@@ -189,7 +191,7 @@
             this.btn_Restore.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Restore.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Restore.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btn_Restore.Location = new System.Drawing.Point(14, 80);
+            this.btn_Restore.Location = new System.Drawing.Point(16, 84);
             this.btn_Restore.Name = "btn_Restore";
             this.btn_Restore.Size = new System.Drawing.Size(100, 30);
             this.btn_Restore.TabIndex = 86;
@@ -229,6 +231,20 @@
             this.label1.TabIndex = 83;
             this.label1.Text = "Database Restore:";
             // 
+            // button2
+            // 
+            this.button2.BackColor = System.Drawing.SystemColors.Control;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.button2.Location = new System.Drawing.Point(16, 120);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(100, 30);
+            this.button2.TabIndex = 89;
+            this.button2.Text = "Return";
+            this.button2.UseVisualStyleBackColor = false;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
+            // 
             // BackupAndRecovery
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,5 +281,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lbl_BackupPath;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button button2;
     }
 }

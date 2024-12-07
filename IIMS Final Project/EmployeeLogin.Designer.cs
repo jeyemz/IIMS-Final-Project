@@ -45,11 +45,12 @@
             // 
             // btn_Back
             // 
-            this.btn_Back.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Back.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Back.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Back.Location = new System.Drawing.Point(644, 12);
+            this.btn_Back.Location = new System.Drawing.Point(595, 12);
             this.btn_Back.Name = "btn_Back";
-            this.btn_Back.Size = new System.Drawing.Size(51, 27);
+            this.btn_Back.Size = new System.Drawing.Size(100, 30);
             this.btn_Back.TabIndex = 34;
             this.btn_Back.Text = "Back";
             this.btn_Back.UseVisualStyleBackColor = false;

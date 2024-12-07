@@ -70,6 +70,7 @@
             this.dgv_Dept.AllowUserToDeleteRows = false;
             this.dgv_Dept.AllowUserToResizeColumns = false;
             this.dgv_Dept.AllowUserToResizeRows = false;
+            this.dgv_Dept.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgv_Dept.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgv_Dept.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
             this.dgv_Dept.Location = new System.Drawing.Point(0, 0);
@@ -83,7 +84,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(641, 47);
+            this.tabPage2.Size = new System.Drawing.Size(641, 130);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "My Task";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -103,13 +104,14 @@
             // 
             // btn_Back
             // 
-            this.btn_Back.BackColor = System.Drawing.Color.Transparent;
+            this.btn_Back.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Back.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Back.Location = new System.Drawing.Point(620, 3);
+            this.btn_Back.Location = new System.Drawing.Point(571, 3);
             this.btn_Back.Name = "btn_Back";
-            this.btn_Back.Size = new System.Drawing.Size(51, 27);
+            this.btn_Back.Size = new System.Drawing.Size(100, 30);
             this.btn_Back.TabIndex = 30;
-            this.btn_Back.Text = "Back";
+            this.btn_Back.Text = "Logout";
             this.btn_Back.UseVisualStyleBackColor = false;
             this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 

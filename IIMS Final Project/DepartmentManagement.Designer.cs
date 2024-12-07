@@ -187,6 +187,7 @@
             this.button9.TabIndex = 77;
             this.button9.Text = "Logout\r\n";
             this.button9.UseVisualStyleBackColor = true;
+            this.button9.Click += new System.EventHandler(this.button9_Click);
             // 
             // button8
             // 
@@ -197,6 +198,7 @@
             this.button8.TabIndex = 76;
             this.button8.Text = "Reports";
             this.button8.UseVisualStyleBackColor = true;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // button7
             // 
@@ -207,6 +209,7 @@
             this.button7.TabIndex = 75;
             this.button7.Text = "Task Management";
             this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
             // 
             // button6
             // 
@@ -217,6 +220,7 @@
             this.button6.TabIndex = 74;
             this.button6.Text = "Project Management";
             this.button6.UseVisualStyleBackColor = true;
+            this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
             // button5
             // 
@@ -227,6 +231,7 @@
             this.button5.TabIndex = 73;
             this.button5.Text = "Employee Management";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button4
             // 
@@ -237,6 +242,7 @@
             this.button4.TabIndex = 72;
             this.button4.Text = "Dashboard";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label5
             // 
