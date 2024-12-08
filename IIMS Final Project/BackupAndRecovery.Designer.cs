@@ -37,7 +37,6 @@
             this.lbl_Title = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             this.btn_Restore = new System.Windows.Forms.Button();
             this.btn_BrowseRestore = new System.Windows.Forms.Button();
             this.txtbox_RestorePath = new System.Windows.Forms.TextBox();
@@ -123,7 +122,7 @@
             // 
             this.lbl_Title.AutoSize = true;
             this.lbl_Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_Title.Location = new System.Drawing.Point(31, 28);
+            this.lbl_Title.Location = new System.Drawing.Point(3, 3);
             this.lbl_Title.Name = "lbl_Title";
             this.lbl_Title.Size = new System.Drawing.Size(169, 25);
             this.lbl_Title.TabIndex = 75;
@@ -133,7 +132,6 @@
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.tabPage2.Controls.Add(this.label2);
-            this.tabPage2.Controls.Add(this.button1);
             this.tabPage2.Controls.Add(this.btn_Restore);
             this.tabPage2.Controls.Add(this.btn_BrowseRestore);
             this.tabPage2.Controls.Add(this.txtbox_RestorePath);
@@ -154,20 +152,6 @@
             this.label2.Size = new System.Drawing.Size(96, 13);
             this.label2.TabIndex = 88;
             this.label2.Text = "Backup File Path:";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.SystemColors.Control;
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.button1.Location = new System.Drawing.Point(6, 172);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 30);
-            this.button1.TabIndex = 87;
-            this.button1.Text = "Menu";
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // btn_Restore
             // 
@@ -211,7 +195,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(31, 28);
+            this.label1.Location = new System.Drawing.Point(3, 3);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(170, 25);
             this.label1.TabIndex = 83;
@@ -240,7 +224,6 @@
             this.Controls.Add(this.tabControl1);
             this.Name = "BackupAndRecovery";
             this.Text = "BackupAndRecovery";
-            this.Load += new System.EventHandler(this.BackupAndRecovery_Load);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
@@ -259,7 +242,6 @@
         private System.Windows.Forms.TextBox txtbox_BackupPath;
         private System.Windows.Forms.Label lbl_Title;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btn_Restore;
         private System.Windows.Forms.Button btn_BrowseRestore;
         private System.Windows.Forms.TextBox txtbox_RestorePath;

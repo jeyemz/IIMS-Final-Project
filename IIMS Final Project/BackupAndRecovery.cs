@@ -23,32 +23,29 @@ namespace IIMS_Final_Project
 
         public BackupAndRecovery()
         {
-            InitializeComponent();
-        }
-
-        private void BackupAndRecovery_Load(object sender, EventArgs e)
-        {
-
+            InitializeComponent(); // Initialize the form components
         }
 
         private void btn_BrowseBackup_Click(object sender, EventArgs e)
         {
+            // Open a dialog for the user to select the backup file location
             using (SaveFileDialog saveFileDialog = new SaveFileDialog
             {
-                Filter = "SQL Files (*.sql)|*.sql",
+                Filter = "SQL Files (*.sql)|*.sql", // Restrict file format to .sql
                 Title = "Select Backup File Location",
-                DefaultExt = "sql"
+                DefaultExt = "sql" // Default file extension
             })
             {
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    txtbox_BackupPath.Text = saveFileDialog.FileName;
+                    txtbox_BackupPath.Text = saveFileDialog.FileName; // Save file path
                 }
             }
         }
 
         private void btn_Backup_Click(object sender, EventArgs e)
         {
+            // Validate that the user has specified a backup path
             if (string.IsNullOrWhiteSpace(txtbox_BackupPath.Text))
             {
                 MessageBox.Show("Please specify a file path for the backup.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -57,8 +54,10 @@ namespace IIMS_Final_Project
 
             try
             {
+                // Create the MySQL dump command
                 string backupCommand = $"mysqldump --user={User} --password={Password} --host={Server} --port={Port} {Database} > \"{txtbox_BackupPath.Text}\"";
 
+                // Execute the command in a shell environment
                 ExecuteCommand(backupCommand);
                 MessageBox.Show("Database backup completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -70,21 +69,23 @@ namespace IIMS_Final_Project
 
         private void btn_BrowseRestore_Click(object sender, EventArgs e)
         {
+            // Open a dialog for the user to select a restore file
             using (OpenFileDialog openFileDialog = new OpenFileDialog
             {
-                Filter = "SQL Files (*.sql)|*.sql",
+                Filter = "SQL Files (*.sql)|*.sql", // Restrict file format to .sql
                 Title = "Select Restore File"
             })
             {
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    txtbox_RestorePath.Text = openFileDialog.FileName;
+                    txtbox_RestorePath.Text = openFileDialog.FileName; // Save file path
                 }
             }
         }
 
         private void btn_Restore_Click(object sender, EventArgs e)
         {
+            // Validate that the user has specified a restore file path
             if (string.IsNullOrWhiteSpace(txtbox_RestorePath.Text))
             {
                 MessageBox.Show("Please specify a file path for the restore.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -93,8 +94,10 @@ namespace IIMS_Final_Project
 
             try
             {
+                // Create the MySQL restore command
                 string restoreCommand = $"mysql --user={User} --password={Password} --host={Server} --port={Port} {Database} < \"{txtbox_RestorePath.Text}\"";
 
+                // Execute the command in a shell environment
                 ExecuteCommand(restoreCommand);
                 MessageBox.Show("Database restore completed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
@@ -108,6 +111,7 @@ namespace IIMS_Final_Project
         {
             try
             {
+                // Prepare the command for execution in a new shell
                 ProcessStartInfo psi = new ProcessStartInfo
                 {
                     FileName = "cmd.exe",
@@ -123,10 +127,11 @@ namespace IIMS_Final_Project
                     {
                         using (StreamWriter sw = process.StandardInput)
                         {
-                            sw.WriteLine(command);
+                            sw.WriteLine(command); // Pass the command to the shell
                         }
                         process.WaitForExit();
 
+                        // Check for command execution success
                         if (process.ExitCode != 0)
                         {
                             throw new Exception($"Command failed with exit code {process.ExitCode}");
@@ -144,15 +149,12 @@ namespace IIMS_Final_Project
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
-
         private void btn_Back_Click(object sender, EventArgs e)
         {
+            // Navigate back to the main menu
             Menu Menu = new Menu();
             Menu.Show();  // Show the Menu form
-            this.Hide();  // Optionally hide the current form
+            this.Hide();  // Hide the current form
         }
     }
 }

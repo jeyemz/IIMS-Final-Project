@@ -54,7 +54,8 @@
             // btn_GenerateReport
             // 
             this.btn_GenerateReport.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_GenerateReport.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_GenerateReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_GenerateReport.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
             this.btn_GenerateReport.Location = new System.Drawing.Point(220, 46);
             this.btn_GenerateReport.Name = "btn_GenerateReport";
             this.btn_GenerateReport.Size = new System.Drawing.Size(93, 32);
@@ -95,7 +96,7 @@
             // 
             this.txtbox_FilePath.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtbox_FilePath.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtbox_FilePath.Location = new System.Drawing.Point(137, 480);
+            this.txtbox_FilePath.Location = new System.Drawing.Point(128, 481);
             this.txtbox_FilePath.Name = "txtbox_FilePath";
             this.txtbox_FilePath.ReadOnly = true;
             this.txtbox_FilePath.Size = new System.Drawing.Size(400, 20);
@@ -104,7 +105,9 @@
             // btn_BrowseFile
             // 
             this.btn_BrowseFile.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_BrowseFile.Location = new System.Drawing.Point(543, 475);
+            this.btn_BrowseFile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_BrowseFile.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_BrowseFile.Location = new System.Drawing.Point(536, 475);
             this.btn_BrowseFile.Name = "btn_BrowseFile";
             this.btn_BrowseFile.Size = new System.Drawing.Size(91, 30);
             this.btn_BrowseFile.TabIndex = 6;
@@ -115,7 +118,9 @@
             // btn_Export
             // 
             this.btn_Export.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btn_Export.Location = new System.Drawing.Point(635, 475);
+            this.btn_Export.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Export.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold);
+            this.btn_Export.Location = new System.Drawing.Point(636, 475);
             this.btn_Export.Name = "btn_Export";
             this.btn_Export.Size = new System.Drawing.Size(91, 30);
             this.btn_Export.TabIndex = 7;
@@ -144,6 +149,7 @@
             this.btn_Back.TabIndex = 82;
             this.btn_Back.Text = "Back";
             this.btn_Back.UseVisualStyleBackColor = false;
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // panel2
             // 
