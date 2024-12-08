@@ -48,9 +48,9 @@
             this.btn_Back.BackColor = System.Drawing.SystemColors.Control;
             this.btn_Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Back.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Back.Location = new System.Drawing.Point(595, 12);
+            this.btn_Back.Location = new System.Drawing.Point(357, 11);
             this.btn_Back.Name = "btn_Back";
-            this.btn_Back.Size = new System.Drawing.Size(100, 30);
+            this.btn_Back.Size = new System.Drawing.Size(63, 30);
             this.btn_Back.TabIndex = 34;
             this.btn_Back.Text = "Back";
             this.btn_Back.UseVisualStyleBackColor = false;
@@ -61,14 +61,15 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(68, 65);
+            this.label1.Location = new System.Drawing.Point(79, 67);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(256, 37);
+            this.label1.Size = new System.Drawing.Size(228, 37);
             this.label1.TabIndex = 37;
-            this.label1.Text = "EMPLOYEE LOGIN";
+            this.label1.Text = "Employee Login";
             // 
             // txtbox_Password
             // 
+            this.txtbox_Password.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtbox_Password.Location = new System.Drawing.Point(86, 204);
             this.txtbox_Password.Name = "txtbox_Password";
             this.txtbox_Password.Size = new System.Drawing.Size(220, 20);
@@ -77,6 +78,7 @@
             // 
             // txtbox_EmployeeId
             // 
+            this.txtbox_EmployeeId.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtbox_EmployeeId.Location = new System.Drawing.Point(86, 157);
             this.txtbox_EmployeeId.Name = "txtbox_EmployeeId";
             this.txtbox_EmployeeId.Size = new System.Drawing.Size(220, 20);
@@ -108,9 +110,9 @@
             // 
             // btn_Login
             // 
-            this.btn_Login.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.btn_Login.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_Login.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Login.Location = new System.Drawing.Point(127, 248);
+            this.btn_Login.Location = new System.Drawing.Point(132, 257);
             this.btn_Login.Name = "btn_Login";
             this.btn_Login.Size = new System.Drawing.Size(121, 37);
             this.btn_Login.TabIndex = 33;
@@ -131,7 +133,7 @@
             this.panel1.Controls.Add(this.panel11);
             this.panel1.Controls.Add(this.lbl_Password);
             this.panel1.Controls.Add(this.btn_Login);
-            this.panel1.Location = new System.Drawing.Point(154, 47);
+            this.panel1.Location = new System.Drawing.Point(27, 47);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(393, 406);
             this.panel1.TabIndex = 38;
@@ -173,10 +175,11 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(707, 499);
+            this.ClientSize = new System.Drawing.Size(447, 478);
             this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.panel1);
             this.Name = "EmployeeLogin";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "EmployeeLogin";
             this.Load += new System.EventHandler(this.EmployeeLogin_Load);
             this.panel1.ResumeLayout(false);

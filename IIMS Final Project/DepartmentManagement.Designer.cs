@@ -34,21 +34,16 @@
             this.txtDepartmentName = new System.Windows.Forms.TextBox();
             this.txtDepartmentCode = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.dgvDepartments = new System.Windows.Forms.DataGridView();
             this.txtDepartmentID = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.button9 = new System.Windows.Forms.Button();
-            this.button8 = new System.Windows.Forms.Button();
-            this.button7 = new System.Windows.Forms.Button();
-            this.button6 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.label5 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btn_Back = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -57,10 +52,10 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(40, 95);
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(38, 108);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 13);
+            this.label1.Size = new System.Drawing.Size(115, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Department Name:";
             this.label1.Click += new System.EventHandler(this.label1_Click);
@@ -68,10 +63,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(40, 134);
+            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(38, 157);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(102, 13);
+            this.label2.Size = new System.Drawing.Size(110, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Department Code:";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -79,10 +74,10 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(44, 173);
+            this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(38, 206);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(55, 13);
+            this.label3.Size = new System.Drawing.Size(57, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Location:";
             this.label3.Click += new System.EventHandler(this.label3_Click);
@@ -90,7 +85,7 @@
             // txtDepartmentName
             // 
             this.txtDepartmentName.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDepartmentName.Location = new System.Drawing.Point(43, 111);
+            this.txtDepartmentName.Location = new System.Drawing.Point(43, 124);
             this.txtDepartmentName.Name = "txtDepartmentName";
             this.txtDepartmentName.Size = new System.Drawing.Size(194, 20);
             this.txtDepartmentName.TabIndex = 3;
@@ -100,7 +95,7 @@
             // txtDepartmentCode
             // 
             this.txtDepartmentCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDepartmentCode.Location = new System.Drawing.Point(43, 150);
+            this.txtDepartmentCode.Location = new System.Drawing.Point(43, 173);
             this.txtDepartmentCode.Name = "txtDepartmentCode";
             this.txtDepartmentCode.Size = new System.Drawing.Size(194, 20);
             this.txtDepartmentCode.TabIndex = 4;
@@ -110,41 +105,30 @@
             // txtLocation
             // 
             this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLocation.Location = new System.Drawing.Point(43, 189);
+            this.txtLocation.Location = new System.Drawing.Point(43, 222);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(194, 20);
             this.txtLocation.TabIndex = 5;
             this.txtLocation.TextChanged += new System.EventHandler(this.txtLocation_TextChanged);
             this.txtLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLocation_KeyPress);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(59, 219);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(156, 43);
-            this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "Add Department";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnEdit
             // 
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(59, 268);
+            this.btnEdit.Location = new System.Drawing.Point(145, 263);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(156, 43);
+            this.btnEdit.Size = new System.Drawing.Size(92, 43);
             this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "Edit Department";
+            this.btnEdit.Text = "Edit ";
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(59, 317);
+            this.btnDelete.Location = new System.Drawing.Point(43, 319);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(156, 43);
+            this.btnDelete.Size = new System.Drawing.Size(194, 43);
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -152,8 +136,9 @@
             // 
             // dgvDepartments
             // 
+            this.dgvDepartments.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.dgvDepartments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDepartments.Location = new System.Drawing.Point(11, 9);
+            this.dgvDepartments.Location = new System.Drawing.Point(14, 56);
             this.dgvDepartments.Name = "dgvDepartments";
             this.dgvDepartments.Size = new System.Drawing.Size(533, 352);
             this.dgvDepartments.TabIndex = 9;
@@ -161,7 +146,7 @@
             // txtDepartmentID
             // 
             this.txtDepartmentID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDepartmentID.Location = new System.Drawing.Point(43, 72);
+            this.txtDepartmentID.Location = new System.Drawing.Point(43, 74);
             this.txtDepartmentID.Name = "txtDepartmentID";
             this.txtDepartmentID.Size = new System.Drawing.Size(194, 20);
             this.txtDepartmentID.TabIndex = 10;
@@ -171,94 +156,27 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(40, 56);
+            this.label4.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(38, 58);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(86, 13);
+            this.label4.Size = new System.Drawing.Size(95, 15);
             this.label4.TabIndex = 11;
             this.label4.Text = "Department ID:";
-            // 
-            // button9
-            // 
-            this.button9.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button9.Location = new System.Drawing.Point(720, 12);
-            this.button9.Name = "button9";
-            this.button9.Size = new System.Drawing.Size(135, 46);
-            this.button9.TabIndex = 77;
-            this.button9.Text = "Logout\r\n";
-            this.button9.UseVisualStyleBackColor = true;
-            this.button9.Click += new System.EventHandler(this.button9_Click);
-            // 
-            // button8
-            // 
-            this.button8.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button8.Location = new System.Drawing.Point(579, 12);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(135, 46);
-            this.button8.TabIndex = 76;
-            this.button8.Text = "Reports";
-            this.button8.UseVisualStyleBackColor = true;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
-            // 
-            // button7
-            // 
-            this.button7.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button7.Location = new System.Drawing.Point(438, 12);
-            this.button7.Name = "button7";
-            this.button7.Size = new System.Drawing.Size(135, 46);
-            this.button7.TabIndex = 75;
-            this.button7.Text = "Task Management";
-            this.button7.UseVisualStyleBackColor = true;
-            this.button7.Click += new System.EventHandler(this.button7_Click);
-            // 
-            // button6
-            // 
-            this.button6.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button6.Location = new System.Drawing.Point(297, 12);
-            this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(135, 46);
-            this.button6.TabIndex = 74;
-            this.button6.Text = "Project Management";
-            this.button6.UseVisualStyleBackColor = true;
-            this.button6.Click += new System.EventHandler(this.button6_Click);
-            // 
-            // button5
-            // 
-            this.button5.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(156, 12);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(135, 46);
-            this.button5.TabIndex = 73;
-            this.button5.Text = "Employee Management";
-            this.button5.UseVisualStyleBackColor = true;
-            this.button5.Click += new System.EventHandler(this.button5_Click);
-            // 
-            // button4
-            // 
-            this.button4.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.Location = new System.Drawing.Point(15, 12);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(135, 46);
-            this.button4.TabIndex = 72;
-            this.button4.Text = "Dashboard";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(9, 12);
+            this.label5.Location = new System.Drawing.Point(9, 13);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(267, 30);
+            this.label5.Size = new System.Drawing.Size(311, 30);
             this.label5.TabIndex = 78;
-            this.label5.Text = "Department Management";
+            this.label5.Text = "DEPARTMENT MANAGEMENT";
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.label2);
@@ -270,20 +188,46 @@
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.txtLocation);
             this.panel1.Controls.Add(this.btnAdd);
-            this.panel1.Location = new System.Drawing.Point(12, 64);
+            this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(279, 374);
+            this.panel1.Size = new System.Drawing.Size(279, 426);
             this.panel1.TabIndex = 79;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdd.Location = new System.Drawing.Point(41, 263);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(92, 43);
+            this.btnAdd.TabIndex = 6;
+            this.btnAdd.Text = "Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel2.Controls.Add(this.label5);
+            this.panel2.Controls.Add(this.btn_Back);
             this.panel2.Controls.Add(this.dgvDepartments);
-            this.panel2.Location = new System.Drawing.Point(297, 64);
+            this.panel2.Location = new System.Drawing.Point(297, 12);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(558, 374);
+            this.panel2.Size = new System.Drawing.Size(558, 426);
             this.panel2.TabIndex = 80;
+            // 
+            // btn_Back
+            // 
+            this.btn_Back.BackColor = System.Drawing.SystemColors.Control;
+            this.btn_Back.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Back.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Back.Location = new System.Drawing.Point(475, 12);
+            this.btn_Back.Name = "btn_Back";
+            this.btn_Back.Size = new System.Drawing.Size(72, 30);
+            this.btn_Back.TabIndex = 81;
+            this.btn_Back.Text = "Back";
+            this.btn_Back.UseVisualStyleBackColor = false;
+            this.btn_Back.Click += new System.EventHandler(this.btn_Back_Click);
             // 
             // DepartmentManagement
             // 
@@ -291,21 +235,17 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(868, 450);
-            this.Controls.Add(this.button9);
-            this.Controls.Add(this.button8);
-            this.Controls.Add(this.button7);
-            this.Controls.Add(this.button6);
-            this.Controls.Add(this.button5);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.panel2);
             this.Name = "DepartmentManagement";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DepartmentManagement";
             this.Load += new System.EventHandler(this.DepartmentManagement_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartments)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -324,14 +264,9 @@
         private System.Windows.Forms.DataGridView dgvDepartments;
         private System.Windows.Forms.TextBox txtDepartmentID;
         private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Button button9;
-        private System.Windows.Forms.Button button8;
-        private System.Windows.Forms.Button button7;
-        private System.Windows.Forms.Button button6;
-        private System.Windows.Forms.Button button5;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Button btn_Back;
     }
 }

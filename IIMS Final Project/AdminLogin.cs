@@ -36,11 +36,11 @@ namespace IIMS_Final_Project
             // Check if the entered username is "user" (you can add more complex validation here)
             if (username == "user" && password == "password") // Assuming "password" is the correct password
             {
-                // Create an instance of the Dashboard form
-                Dashboard dashboardForm = new Dashboard();
+                // Create an instance of the Menu form
+                Menu Menu = new Menu();
 
-                // Optionally, pass data to the Dashboard form if needed
-                dashboardForm.Show();  // Show the Dashboard form
+                // Optionally, pass data to the Menu form if needed
+                Menu.Show();  // Show the Dashboard form
 
                 // Hide the current login form (optional)
                 this.Hide();
@@ -57,6 +57,14 @@ namespace IIMS_Final_Project
             MainForm loginForm = new MainForm();
             loginForm.Show();  // Show the Login form
             this.Hide();  // Optionally hide the current form
+        }
+
+        private void btn_Back_Click(object sender, EventArgs e)
+        {
+            // Navigate to the Employee_AdminForm
+            MainForm MainForm = new MainForm();
+            MainForm.Show();
+            this.Hide();
         }
     }
     

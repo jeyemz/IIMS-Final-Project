@@ -52,9 +52,9 @@
             this.btn_Exit.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.btn_Exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Exit.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Exit.Location = new System.Drawing.Point(359, 6);
+            this.btn_Exit.Location = new System.Drawing.Point(388, 7);
             this.btn_Exit.Name = "btn_Exit";
-            this.btn_Exit.Size = new System.Drawing.Size(100, 30);
+            this.btn_Exit.Size = new System.Drawing.Size(67, 30);
             this.btn_Exit.TabIndex = 92;
             this.btn_Exit.Text = "Exit";
             this.btn_Exit.UseVisualStyleBackColor = false;
@@ -64,7 +64,7 @@
             // 
             this.btn_Admin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Admin.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_Admin.Location = new System.Drawing.Point(281, 95);
+            this.btn_Admin.Location = new System.Drawing.Point(258, 100);
             this.btn_Admin.Name = "btn_Admin";
             this.btn_Admin.Size = new System.Drawing.Size(86, 73);
             this.btn_Admin.TabIndex = 91;
@@ -77,7 +77,7 @@
             // 
             this.btn_Employee.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_Employee.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btn_Employee.Location = new System.Drawing.Point(100, 95);
+            this.btn_Employee.Location = new System.Drawing.Point(105, 100);
             this.btn_Employee.Name = "btn_Employee";
             this.btn_Employee.Size = new System.Drawing.Size(86, 73);
             this.btn_Employee.TabIndex = 90;
@@ -89,7 +89,9 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.panel1.Controls.Add(this.btn_Admin);
             this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.btn_Employee);
             this.panel1.Controls.Add(this.btn_Exit);
             this.panel1.Location = new System.Drawing.Point(12, 12);
             this.panel1.Name = "panel1";
@@ -102,10 +104,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(486, 238);
-            this.Controls.Add(this.btn_Admin);
-            this.Controls.Add(this.btn_Employee);
             this.Controls.Add(this.panel1);
             this.Name = "MainForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MainForm";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.panel1.ResumeLayout(false);

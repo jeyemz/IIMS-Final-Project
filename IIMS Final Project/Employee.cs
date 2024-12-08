@@ -108,10 +108,17 @@ namespace IIMS_Final_Project
 
         private void btn_Back_Click(object sender, EventArgs e)
         {
-            // Navigate to the Employee_LoginForm
-            EmployeeLogin EmployeeLogin = new EmployeeLogin();
-            EmployeeLogin.Show();
-            this.Hide();
+            //Create a confirmation dialog
+            DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout Confirmation", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+
+            //Check the user's response
+            if (result == DialogResult.Yes)
+            {
+                // Navigate to the MainForm
+                MainForm MainForm = new MainForm();
+                MainForm.Show();
+                this.Hide();
+            }
         }
     }
 }

@@ -144,25 +144,15 @@ namespace IIMS_Final_Project
             }
         }
 
-        private void btn_BackToMenu_Click(object sender, EventArgs e)
-        {
-            Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Hide();
-        }
-
         private void button1_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Hide();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_Back_Click(object sender, EventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
-            dashboard.Show();
-            this.Hide();
+            Menu Menu = new Menu();
+            Menu.Show();  // Show the Menu form
+            this.Hide();  // Optionally hide the current form
         }
     }
 }
