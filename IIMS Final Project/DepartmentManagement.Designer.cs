@@ -58,7 +58,6 @@
             this.label1.Size = new System.Drawing.Size(115, 15);
             this.label1.TabIndex = 0;
             this.label1.Text = "Department Name:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label2
             // 
@@ -69,7 +68,6 @@
             this.label2.Size = new System.Drawing.Size(110, 15);
             this.label2.TabIndex = 1;
             this.label2.Text = "Department Code:";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label3
             // 
@@ -80,7 +78,6 @@
             this.label3.Size = new System.Drawing.Size(57, 15);
             this.label3.TabIndex = 2;
             this.label3.Text = "Location:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // txtDepartmentName
             // 
@@ -89,7 +86,6 @@
             this.txtDepartmentName.Name = "txtDepartmentName";
             this.txtDepartmentName.Size = new System.Drawing.Size(194, 20);
             this.txtDepartmentName.TabIndex = 3;
-            this.txtDepartmentName.TextChanged += new System.EventHandler(this.txtDepartmentName_TextChanged);
             this.txtDepartmentName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepartmentName_KeyPress);
             // 
             // txtDepartmentCode
@@ -99,7 +95,6 @@
             this.txtDepartmentCode.Name = "txtDepartmentCode";
             this.txtDepartmentCode.Size = new System.Drawing.Size(194, 20);
             this.txtDepartmentCode.TabIndex = 4;
-            this.txtDepartmentCode.TextChanged += new System.EventHandler(this.txtDepartmentCode_TextChanged);
             this.txtDepartmentCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepartmentCode_KeyPress);
             // 
             // txtLocation
@@ -109,7 +104,6 @@
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(194, 20);
             this.txtLocation.TabIndex = 5;
-            this.txtLocation.TextChanged += new System.EventHandler(this.txtLocation_TextChanged);
             this.txtLocation.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLocation_KeyPress);
             // 
             // btnEdit
@@ -150,7 +144,6 @@
             this.txtDepartmentID.Name = "txtDepartmentID";
             this.txtDepartmentID.Size = new System.Drawing.Size(194, 20);
             this.txtDepartmentID.TabIndex = 10;
-            this.txtDepartmentID.TextChanged += new System.EventHandler(this.txtDepartmentId_TextChanged);
             this.txtDepartmentID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepartmentID_KeyPress);
             // 
             // label4

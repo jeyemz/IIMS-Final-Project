@@ -134,31 +134,6 @@ namespace IIMS_Final_Project
             LoadDepartmentData();
         }
 
-        // Event handler for Department Name TextBox change (optional)
-        private void txtDepartmentName_TextChanged(object sender, EventArgs e)
-        {
-            // Optionally handle text change
-        }
-
-        // Event handler for Department Code TextBox change (optional)
-        private void txtDepartmentCode_TextChanged(object sender, EventArgs e)
-        {
-            // Optionally handle text change
-        }
-
-        // Event handler for Location TextBox change (optional)
-        private void txtLocation_TextChanged(object sender, EventArgs e)
-        {
-            // Optionally handle text change
-        }
-
-        // Event handler for Department ID TextBox change (optional)
-        private void txtDepartmentId_TextChanged(object sender, EventArgs e)
-        {
-            // Optionally handle text change
-        }
-
-
         //INPUT CHECKERS
         private void txtDepartmentID_KeyPress(object sender, KeyPressEventArgs e)
         {
@@ -201,21 +176,6 @@ namespace IIMS_Final_Project
             {
                 e.Handled = true;
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void btn_Back_Click(object sender, EventArgs e)
