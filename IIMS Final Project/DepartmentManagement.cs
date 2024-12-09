@@ -15,7 +15,7 @@ namespace IIMS_Final_Project
 {
     public partial class DepartmentManagement : Form
     {
-        // Your connection string
+        // Connection string to MySQL database
         private string connectionString = "Server=localhost;Port=3306;Database=iims_finalproject;Uid=root;Pwd=;";
 
         public DepartmentManagement()
@@ -23,166 +23,216 @@ namespace IIMS_Final_Project
             InitializeComponent();
         }
 
+        // Load event handler for the form
         private void DepartmentManagement_Load(object sender, EventArgs e)
         {
-            LoadDepartmentData();
+            LoadDepartmentData(); // Load Department table data
+            ConfigureDataGridView(); // Configure DataGridView display settings
         }
 
-        // Load data from Department table into DataGridView
+        // Load data from the Department table into DataGridView
         private void LoadDepartmentData()
         {
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "SELECT * FROM Department"; // Correct table name
-
-                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection);
-                DataTable dataTable = new DataTable();
-                dataAdapter.Fill(dataTable);
-
-                dgvDepartments.DataSource = dataTable;
+                string query = "SELECT * FROM Department"; // Query to retrieve all departments
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(query, connection); // Adapter to fill data
+                DataTable dataTable = new DataTable(); // Create a data table
+                dataAdapter.Fill(dataTable); // Fill the data table with data
+                dgvDepartments.DataSource = dataTable; // Bind data to DataGridView
             }
+        }
+
+        // Configure DataGridView settings for better display
+        private void ConfigureDataGridView()
+        {
+            dgvDepartments.Width = 450;  // Set the width of DataGridView
+            dgvDepartments.Height = 175; // Set the height of DataGridView
+
+            // Enable automatic resizing for columns and rows
+            dgvDepartments.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dgvDepartments.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
+
+            // Add padding for better readability
+            dgvDepartments.DefaultCellStyle.Padding = new Padding(5);
+
+            // Change font size for rows and column headers
+            dgvDepartments.DefaultCellStyle.Font = new Font("Arial", 10);
+            dgvDepartments.ColumnHeadersDefaultCellStyle.Font = new Font("Arial", 11, FontStyle.Bold);
+
+            // Enable horizontal and vertical scroll bars
+            dgvDepartments.ScrollBars = ScrollBars.Both;
         }
 
         // Add Department button click event handler
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            string departmentName = txtDepartmentName.Text;
-            string departmentCode = txtDepartmentCode.Text;
-            string location = txtLocation.Text;
+            // Retrieve input values from text boxes
+            string departmentName = txtDepartmentName.Text.Trim();
+            string location = txtLocation.Text.Trim();
 
-            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(departmentCode))
+            // Check if inputs are empty
+            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(location))
             {
-                MessageBox.Show("Please enter both department name and department code.");
+                MessageBox.Show("Please fill in all fields (Department Name and Location).");
                 return;
             }
 
+            // Add the new department to the database
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "INSERT INTO Department (department_name, department_code, location) VALUES (@department_name, @department_code, @location)";
-
+                string query = "INSERT INTO Department (department_name, location) VALUES (@department_name, @location)";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@department_name", departmentName);
-                command.Parameters.AddWithValue("@department_code", departmentCode);
                 command.Parameters.AddWithValue("@location", location);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                try
+                {
+                    connection.Open(); // Open database connection
+                    command.ExecuteNonQuery(); // Execute query
+                    MessageBox.Show("Department added successfully!"); // Success message
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}"); // Display error
+                }
+                finally
+                {
+                    connection.Close(); // Close connection
+                }
             }
 
-            // Reload the data
-            LoadDepartmentData();
+            LoadDepartmentData(); // Reload data into DataGridView
         }
 
         // Edit Department button click event handler
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            int departmentID = Convert.ToInt32(txtDepartmentID.Text);
-            string departmentName = txtDepartmentName.Text;
-            string departmentCode = txtDepartmentCode.Text;
-            string location = txtLocation.Text;
-
-            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(departmentCode))
+            // Check if Department ID is selected
+            if (string.IsNullOrEmpty(txtDepartmentID.Text))
             {
-                MessageBox.Show("Please enter both department name and department code.");
+                MessageBox.Show("Please select a department to edit.");
                 return;
             }
 
+            // Retrieve updated data from text boxes
+            int departmentID = Convert.ToInt32(txtDepartmentID.Text);
+            string departmentName = txtDepartmentName.Text.Trim();
+            string location = txtLocation.Text.Trim();
+
+            // Check if inputs are empty
+            if (string.IsNullOrEmpty(departmentName) || string.IsNullOrEmpty(location))
+            {
+                MessageBox.Show("Please fill in all fields (Department Name and Location).");
+                return;
+            }
+
+            // Update the selected department in the database
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                string query = "UPDATE Department SET department_name = @department_name, department_code = @department_code, location = @location WHERE department_id = @department_id";
-
+                string query = "UPDATE Department SET department_name = @department_name, location = @location WHERE department_id = @department_id";
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@department_name", departmentName);
-                command.Parameters.AddWithValue("@department_code", departmentCode);
                 command.Parameters.AddWithValue("@location", location);
                 command.Parameters.AddWithValue("@department_id", departmentID);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                try
+                {
+                    connection.Open(); // Open database connection
+                    command.ExecuteNonQuery(); // Execute query
+                    MessageBox.Show("Department updated successfully!"); // Success message
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}"); // Display error
+                }
+                finally
+                {
+                    connection.Close(); // Close connection
+                }
             }
 
-            // Reload the data
-            LoadDepartmentData();
+            LoadDepartmentData(); // Reload data into DataGridView
         }
 
         // Delete Department button click event handler
         private void btnDelete_Click(object sender, EventArgs e)
         {
-            int departmentID = Convert.ToInt32(txtDepartmentID.Text);
-
-            if (departmentID <= 0)
+            // Check if Department ID is selected
+            if (string.IsNullOrEmpty(txtDepartmentID.Text))
             {
-                MessageBox.Show("Please select a valid department.");
+                MessageBox.Show("Please select a department to delete.");
                 return;
             }
 
+            // Retrieve Department ID
+            int departmentID = Convert.ToInt32(txtDepartmentID.Text);
+
+            // Delete the selected department from the database
             using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
                 string query = "DELETE FROM Department WHERE department_id = @department_id";
-
                 MySqlCommand command = new MySqlCommand(query, connection);
                 command.Parameters.AddWithValue("@department_id", departmentID);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-                connection.Close();
+                try
+                {
+                    connection.Open(); // Open database connection
+                    command.ExecuteNonQuery(); // Execute query
+                    MessageBox.Show("Department deleted successfully!"); // Success message
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error: {ex.Message}"); // Display error
+                }
+                finally
+                {
+                    connection.Close(); // Close connection
+                }
             }
 
-            // Reload the data
-            LoadDepartmentData();
+            LoadDepartmentData(); // Reload data into DataGridView
         }
 
-        //INPUT CHECKERS
+        // Input validation methods
         private void txtDepartmentID_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Calling Functions
-            IntChecker(e);
+            IntChecker(e); // Allow only integer input
         }
 
         private void txtDepartmentName_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Calling Functions
-            StringChecker(e);
-        }
-
-        private void txtDepartmentCode_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            //Calling Functions
-            StringChecker(e);
+            StringChecker(e); // Allow only alphabetic input
         }
 
         private void txtLocation_KeyPress(object sender, KeyPressEventArgs e)
         {
-            //Calling Functions
-            StringChecker(e);
+            StringChecker(e); // Allow only alphabetic input
         }
 
+        // Method to validate integer input
         static void IntChecker(KeyPressEventArgs e)
         {
-            //Check is the pressed key is a valid INT character
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
-            { 
-            
-                e.Handled = true;
+            {
+                e.Handled = true; // Reject non-numeric input
             }
-
         }
+
+        // Method to validate string input
         static void StringChecker(KeyPressEventArgs e)
         {
-            //Check is the pressed key is a valid string character
             if (!Regex.IsMatch(e.KeyChar.ToString(), @"[a-zA-Z\s\b]"))
             {
-                e.Handled = true;
+                e.Handled = true; // Reject non-alphabetic input
             }
         }
 
+        // Back button click event handler
         private void btn_Back_Click(object sender, EventArgs e)
         {
-            // Navigate to the MenuForm
-            Menu Menu = new Menu();
-            Menu.Show();
+            Menu menu = new Menu(); // Navigate back to Menu form
+            menu.Show();
             this.Hide();
         }
     }

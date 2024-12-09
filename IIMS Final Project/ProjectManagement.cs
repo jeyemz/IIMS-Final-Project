@@ -48,26 +48,6 @@ namespace IIMS_Final_Project
             }
         }
 
-        private void txtProjectID_TextChanged(object sender, EventArgs e)
-        {
-            // Add validation or other logic as needed
-        }
-
-        private void txtProjectName_TextChanged(object sender, EventArgs e)
-        {
-            // Add validation or other logic as needed
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            // Add validation or other logic as needed
-        }
-
-        private void txtManagerID_TextChanged(object sender, EventArgs e)
-        {
-            // Add validation or other logic as needed
-        }
-
         // Add Project Button Click
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -204,16 +184,56 @@ namespace IIMS_Final_Project
             dtpEndDate.Value = DateTime.Now;
         }
 
-        private void lblManagerID_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Back_Click(object sender, EventArgs e)
         {
             Menu Menu = new Menu();
             Menu.Show();  // Show the Menu form
             this.Hide();  // Optionally hide the current form
         }
+        
+        //Key checker
+        private void txtProjectID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Calling Function
+            IntChecker(e);
+        }
+
+        private void txtProjectName_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Calling Functions
+            StringChecker(e);
+        }
+
+        private void txtProjectDescription_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Calling Functions
+            StringChecker(e);
+        }
+
+        private void txtManagerID_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Calling Function
+            IntChecker(e);
+        }
+
+        static void IntChecker(KeyPressEventArgs e)
+        {
+            //Check is the pressed key is a valid integer character
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        static void StringChecker(KeyPressEventArgs e)
+        {
+            //Check is the pressed key is a valid string character
+            if (!Regex.IsMatch(e.KeyChar.ToString(), @"[a-zA-Z\s\b]"))
+            {
+                e.Handled = true;
+            }
+        }
+
+        
     }
 }

@@ -81,7 +81,7 @@
             this.txtProjectID.Name = "txtProjectID";
             this.txtProjectID.Size = new System.Drawing.Size(200, 20);
             this.txtProjectID.TabIndex = 51;
-            this.txtProjectID.TextChanged += new System.EventHandler(this.txtProjectID_TextChanged);
+            this.txtProjectID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProjectID_KeyPress);
             // 
             // txtProjectName
             // 
@@ -90,7 +90,7 @@
             this.txtProjectName.Name = "txtProjectName";
             this.txtProjectName.Size = new System.Drawing.Size(200, 20);
             this.txtProjectName.TabIndex = 52;
-            this.txtProjectName.TextChanged += new System.EventHandler(this.txtProjectName_TextChanged);
+            this.txtProjectName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProjectName_KeyPress);
             // 
             // lblProjectDescription
             // 
@@ -110,7 +110,7 @@
             this.txtProjectDescription.Name = "txtProjectDescription";
             this.txtProjectDescription.Size = new System.Drawing.Size(200, 51);
             this.txtProjectDescription.TabIndex = 54;
-            this.txtProjectDescription.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.txtProjectDescription.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtProjectDescription_KeyPress);
             // 
             // lblStartDate
             // 
@@ -141,7 +141,6 @@
             this.lblManagerID.Size = new System.Drawing.Size(75, 15);
             this.lblManagerID.TabIndex = 57;
             this.lblManagerID.Text = "Manager ID:";
-            this.lblManagerID.Click += new System.EventHandler(this.lblManagerID_Click);
             // 
             // dtpStartDate
             // 
@@ -164,7 +163,7 @@
             this.txtManagerID.Name = "txtManagerID";
             this.txtManagerID.Size = new System.Drawing.Size(200, 20);
             this.txtManagerID.TabIndex = 60;
-            this.txtManagerID.TextChanged += new System.EventHandler(this.txtManagerID_TextChanged);
+            this.txtManagerID.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtManagerID_KeyPress);
             // 
             // btnAdd
             // 

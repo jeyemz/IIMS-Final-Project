@@ -29,10 +29,8 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.txtDepartmentName = new System.Windows.Forms.TextBox();
-            this.txtDepartmentCode = new System.Windows.Forms.TextBox();
             this.txtLocation = new System.Windows.Forms.TextBox();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -59,21 +57,11 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Department Name:";
             // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(38, 157);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(110, 15);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Department Code:";
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(38, 206);
+            this.label3.Location = new System.Drawing.Point(40, 158);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(57, 15);
             this.label3.TabIndex = 2;
@@ -88,19 +76,10 @@
             this.txtDepartmentName.TabIndex = 3;
             this.txtDepartmentName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepartmentName_KeyPress);
             // 
-            // txtDepartmentCode
-            // 
-            this.txtDepartmentCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtDepartmentCode.Location = new System.Drawing.Point(43, 173);
-            this.txtDepartmentCode.Name = "txtDepartmentCode";
-            this.txtDepartmentCode.Size = new System.Drawing.Size(194, 20);
-            this.txtDepartmentCode.TabIndex = 4;
-            this.txtDepartmentCode.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtDepartmentCode_KeyPress);
-            // 
             // txtLocation
             // 
             this.txtLocation.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtLocation.Location = new System.Drawing.Point(43, 222);
+            this.txtLocation.Location = new System.Drawing.Point(43, 176);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(194, 20);
             this.txtLocation.TabIndex = 5;
@@ -109,7 +88,7 @@
             // btnEdit
             // 
             this.btnEdit.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.Location = new System.Drawing.Point(145, 263);
+            this.btnEdit.Location = new System.Drawing.Point(145, 220);
             this.btnEdit.Name = "btnEdit";
             this.btnEdit.Size = new System.Drawing.Size(92, 43);
             this.btnEdit.TabIndex = 7;
@@ -120,7 +99,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(43, 319);
+            this.btnDelete.Location = new System.Drawing.Point(43, 283);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(194, 43);
             this.btnDelete.TabIndex = 8;
@@ -172,10 +151,8 @@
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panel1.Controls.Add(this.label4);
             this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.txtDepartmentName);
-            this.panel1.Controls.Add(this.txtDepartmentCode);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.txtDepartmentID);
             this.panel1.Controls.Add(this.btnEdit);
@@ -189,7 +166,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(41, 263);
+            this.btnAdd.Location = new System.Drawing.Point(41, 220);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(92, 43);
             this.btnAdd.TabIndex = 6;
@@ -246,10 +223,8 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtDepartmentName;
-        private System.Windows.Forms.TextBox txtDepartmentCode;
         private System.Windows.Forms.TextBox txtLocation;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Button btnEdit;
