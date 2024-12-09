@@ -6,6 +6,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
@@ -14,7 +15,7 @@ namespace IIMS_Final_Project
 {
     public partial class TaskManagement : Form
     {
-        private string connectionString = "Server=localhost;Database=iims_finalproject;User=root;Password=jrms;";
+        private string connectionString = "Server=localhost;Database=iims_finalproject;User=root;Password=;Port=3307";
 
         public TaskManagement()
         {
@@ -86,32 +87,7 @@ namespace IIMS_Final_Project
             comboBox2.ValueMember = "Key";     // Hold employee ID
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dateTimePicker1_ValueChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox2_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btn_Add_Click(object sender, EventArgs e)
         {
             if (comboBox1.SelectedItem == null || comboBox2.SelectedItem == null)
             {
@@ -121,7 +97,7 @@ namespace IIMS_Final_Project
 
             int projectId = ((KeyValuePair<int, string>)comboBox1.SelectedItem).Key;
             int assignedTo = ((KeyValuePair<int, string>)comboBox2.SelectedItem).Key;
-            string taskName = textBox1.Text;
+            string taskName = txtbox_Task.Text;
             DateTime dueDate = dateTimePicker1.Value;
 
             if (string.IsNullOrEmpty(taskName) || projectId == 0 || assignedTo == 0)
@@ -147,7 +123,7 @@ namespace IIMS_Final_Project
             LoadTasks(); // Refresh DataGridView
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void btn_Edit_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -156,7 +132,7 @@ namespace IIMS_Final_Project
             }
 
             int taskId = Convert.ToInt32(dataGridView1.SelectedRows[0].Cells["task_id"].Value);
-            string taskName = textBox1.Text;
+            string taskName = txtbox_Task.Text;
 
             if (comboBox1.SelectedValue == null || comboBox2.SelectedValue == null)
             {
@@ -191,7 +167,7 @@ namespace IIMS_Final_Project
             LoadTasks();
         }
 
-        private void button3_Click(object sender, EventArgs e)
+        private void btnDelete_Click(object sender, EventArgs e)
         {
             if (dataGridView1.SelectedRows.Count == 0)
             {
@@ -235,16 +211,26 @@ namespace IIMS_Final_Project
             }
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void btn_Back_Click(object sender, EventArgs e)
         {
             Menu Menu = new Menu();
             Menu.Show();  // Show the Menu form
             this.Hide();  // Optionally hide the current form
+        }
+
+        private void txtbox_Task_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            //Calling Function
+            StringChecker(e);
+        }
+
+        static void StringChecker(KeyPressEventArgs e)
+        {
+            //Check is the pressed key is a valid string character
+            if (!Regex.IsMatch(e.KeyChar.ToString(), @"[a-zA-Z\s\b]"))
+            {
+                e.Handled = true;
+            }
         }
     }
 }
