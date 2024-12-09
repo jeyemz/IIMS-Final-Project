@@ -116,6 +116,9 @@ namespace IIMS_Final_Project
             comboBox1.DataSource = dtDepartments;
             comboBox1.ValueMember = "department_id";  // ID will be used for selection
             comboBox1.DisplayMember = "department_name"; // Name will be displayed to the user
+
+            // Load the employees data into the DataGridView
+            LoadEmployees();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -123,7 +126,15 @@ namespace IIMS_Final_Project
             string firstName = textBox1.Text;
             string lastName = textBox2.Text;
             string email = textBox4.Text;
+            string password = textBox3.Text; // Get the password from the password textbox
             int departmentId = 0;
+
+            // Validate if the names contain any numbers
+            if (firstName.Any(char.IsDigit) || lastName.Any(char.IsDigit))
+            {
+                MessageBox.Show("Names should not contain numbers.");
+                return; // Exit the method if names contain numbers
+            }
 
             // Check if a department is selected
             if (comboBox1.SelectedIndex == -1 || comboBox1.SelectedValue == null)
@@ -133,16 +144,21 @@ namespace IIMS_Final_Project
             }
             else
             {
-                // Display the selected department ID for debugging
-                MessageBox.Show("Selected Department ID: " + comboBox1.SelectedValue.ToString());
                 departmentId = Convert.ToInt32(comboBox1.SelectedValue); // Get the selected department ID
+            }
+
+            // Validate that password is provided
+            if (string.IsNullOrEmpty(password))
+            {
+                MessageBox.Show("Please enter a password.");
+                return; // Exit the method if the password is not entered
             }
 
             DateTime hireDate = dateTimePicker1.Value;
 
-            // Insert SQL query
-            string query = "INSERT INTO Employee (first_name, last_name, email, department_id, hire_date) " +
-                           "VALUES (@firstName, @lastName, @email, @departmentId, @hireDate)";
+            // Insert SQL query (including password field)
+            string query = "INSERT INTO Employee (first_name, last_name, email, password, department_id, hire_date) " +
+                           "VALUES (@firstName, @lastName, @email, @password, @departmentId, @hireDate)";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
             {
@@ -155,6 +171,7 @@ namespace IIMS_Final_Project
                     cmd.Parameters.Add("@firstName", MySqlDbType.VarChar).Value = firstName;
                     cmd.Parameters.Add("@lastName", MySqlDbType.VarChar).Value = lastName;
                     cmd.Parameters.Add("@email", MySqlDbType.VarChar).Value = email;
+                    cmd.Parameters.Add("@password", MySqlDbType.VarChar).Value = password; // Add password parameter
                     cmd.Parameters.Add("@departmentId", MySqlDbType.Int32).Value = departmentId;
                     cmd.Parameters.Add("@hireDate", MySqlDbType.Date).Value = hireDate;
 
@@ -172,25 +189,25 @@ namespace IIMS_Final_Project
         }
 
 
-
-
-
         private void button2_Click(object sender, EventArgs e)
         {
-            // Ensure that a row is selected
+            // Ensure a row is selected
             if (dataGridView1.SelectedCells.Count == 0)
             {
                 MessageBox.Show("Please select an employee to delete.");
                 return;
             }
 
-            // Get the row index of the selected cell
+            // Step 2: Get the employee ID from the selected row
             int selectedRowIndex = dataGridView1.SelectedCells[0].RowIndex;
+            int employeeId;
+            if (!int.TryParse(dataGridView1.Rows[selectedRowIndex].Cells["employee_id"].Value.ToString(), out employeeId))
+            {
+                MessageBox.Show("Invalid employee ID.");
+                return;
+            }
 
-            // Get the employee ID from the selected row
-            int employeeId = Convert.ToInt32(dataGridView1.Rows[selectedRowIndex].Cells["employee_id"].Value);
-
-            // Prepare the delete query
+            // Step 3: Prepare the DELETE query based on employee_id
             string query = "DELETE FROM Employee WHERE employee_id = @employeeId";
 
             using (MySqlConnection conn = new MySqlConnection(connectionString))
@@ -245,6 +262,7 @@ namespace IIMS_Final_Project
             string firstName = textBox1.Text.Trim();
             string lastName = textBox2.Text.Trim();
             string email = textBox4.Text.Trim();
+            string password = textBox3.Text.Trim();  // Assuming password is in textBox3
             if (comboBox1.SelectedValue == null)
             {
                 MessageBox.Show("Please select a valid department.");
@@ -254,15 +272,15 @@ namespace IIMS_Final_Project
             DateTime hireDate = dateTimePicker1.Value;
 
             // Step 4: Validate fields before updating
-            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email))
+            if (string.IsNullOrEmpty(firstName) || string.IsNullOrEmpty(lastName) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                MessageBox.Show("Please fill in all required fields (First Name, Last Name, Email).");
+                MessageBox.Show("Please fill in all required fields (First Name, Last Name, Email, and Password).");
                 return;
             }
 
             // Step 5: Prepare the SQL UPDATE query
             string query = "UPDATE Employee SET first_name = @firstName, last_name = @lastName, email = @email, " +
-                           "department_id = @departmentId, hire_date = @hireDate WHERE employee_id = @employeeId";
+                           "password = @password, department_id = @departmentId, hire_date = @hireDate WHERE employee_id = @employeeId";
 
             try
             {
@@ -275,6 +293,7 @@ namespace IIMS_Final_Project
                     cmd.Parameters.AddWithValue("@firstName", firstName);
                     cmd.Parameters.AddWithValue("@lastName", lastName);
                     cmd.Parameters.AddWithValue("@email", email);
+                    cmd.Parameters.AddWithValue("@password", password); // Add password to parameters
                     cmd.Parameters.AddWithValue("@departmentId", departmentId);
                     cmd.Parameters.AddWithValue("@hireDate", hireDate);
                     cmd.Parameters.AddWithValue("@employeeId", employeeId);
@@ -311,10 +330,9 @@ namespace IIMS_Final_Project
             }
         }
 
-
         private void button4_Click(object sender, EventArgs e)
         {
-            LoadEmployees();
+           
         }
 
 
@@ -330,6 +348,18 @@ namespace IIMS_Final_Project
                 // Set selected department in comboBox (if available)
                 comboBox1.SelectedValue = row.Cells["department_id"].Value;
             }
+        }
+
+        private void btn_Back_Click(object sender, EventArgs e)
+        {
+            Menu Menu = new Menu();
+            Menu.Show();
+            this.Hide();
+        }
+
+        private void textBox3_TextChanged_1(object sender, EventArgs e)
+        {
+            textBox3.PasswordChar = '*';
         }
         // Form load event to load employees into the DataGridView
     }

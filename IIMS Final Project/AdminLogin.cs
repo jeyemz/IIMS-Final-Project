@@ -34,7 +34,7 @@ namespace IIMS_Final_Project
             string password = textBox2.Text; // You can add password validation logic here if needed
 
             // Check if the entered username is "user" (you can add more complex validation here)
-            if (username == "user" && password == "password") // Assuming "password" is the correct password
+            if (username == "admin" && password == "password") // Assuming "password" is the correct password
             {
                 // Create an instance of the Menu form
                 Menu Menu = new Menu();
@@ -52,13 +52,7 @@ namespace IIMS_Final_Project
             }
         }
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            MainForm loginForm = new MainForm();
-            loginForm.Show();  // Show the Login form
-            this.Hide();  // Optionally hide the current form
-        }
-
+     
         private void btn_Back_Click(object sender, EventArgs e)
         {
             // Navigate to the Employee_AdminForm
