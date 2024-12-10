@@ -15,7 +15,7 @@ namespace IIMS_Final_Project
 {
     public partial class ProjectManagement : Form
     {
-        private string connectionString = "Server=localhost;Port=3306;Database=iims_finalproject;Uid=root;Pwd=;";  
+        private string connectionString = "Server=localhost;Database=iims_finalproject;User ID=root;Password=peybi29INC";
 
         public ProjectManagement()
         {
@@ -30,12 +30,13 @@ namespace IIMS_Final_Project
 
         private void LoadProjectData()
         {
+
             try
             {
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "SELECT * FROM Projects";  // Change 'Projects' to your table name if different
+                    string query = "SELECT * FROM Project";  // Ensure this is the correct table name
                     MySqlDataAdapter da = new MySqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
@@ -48,6 +49,7 @@ namespace IIMS_Final_Project
             }
         }
 
+
         // Add Project Button Click
         private void btnAdd_Click(object sender, EventArgs e)
         {
@@ -56,12 +58,18 @@ namespace IIMS_Final_Project
             string projectDescription = txtProjectDescription.Text;
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
-            string managerID = txtManagerID.Text;
+            string deptID = txtDeptID.Text;
 
             // Validate inputs
-            if (string.IsNullOrEmpty(projectID) || string.IsNullOrEmpty(projectName) || string.IsNullOrEmpty(managerID))
+            if (string.IsNullOrEmpty(projectID) || string.IsNullOrEmpty(projectName) || string.IsNullOrEmpty(deptID))
             {
                 MessageBox.Show("Please fill in all required fields.");
+                return;
+            }
+
+            if (dtpStartDate.Value > dtpEndDate.Value)
+            {
+                MessageBox.Show("Start Date cannot be later than End Date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -70,16 +78,15 @@ namespace IIMS_Final_Project
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "INSERT INTO Projects (ProjectID, ProjectName, ProjectDescription, StartDate, EndDate, ManagerID) " +
-                                   "VALUES (@ProjectID, @ProjectName, @ProjectDescription, @StartDate, @EndDate, @ManagerID)";
+                    string query = "INSERT INTO Project (project_name, projectDescription, start_date, end_date, department_id) " +
+                                   "VALUES (@ProjectName, @ProjectDescription, @StartDate, @EndDate, @DepartmentID)";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ProjectID", projectID);
                     cmd.Parameters.AddWithValue("@ProjectName", projectName);
                     cmd.Parameters.AddWithValue("@ProjectDescription", projectDescription);
                     cmd.Parameters.AddWithValue("@StartDate", startDate);
                     cmd.Parameters.AddWithValue("@EndDate", endDate);
-                    cmd.Parameters.AddWithValue("@ManagerID", managerID);
+                    cmd.Parameters.AddWithValue("@DepartmentID", deptID);  // Assuming you will assign a department_id (adjust logic accordingly)
 
                     cmd.ExecuteNonQuery();  // Execute the insert query
                     MessageBox.Show("Project Added!");
@@ -101,12 +108,18 @@ namespace IIMS_Final_Project
             string projectDescription = txtProjectDescription.Text;
             DateTime startDate = dtpStartDate.Value;
             DateTime endDate = dtpEndDate.Value;
-            string managerID = txtManagerID.Text;
+            string deptID = txtDeptID.Text;
 
             // Validate inputs
-            if (string.IsNullOrEmpty(projectID) || string.IsNullOrEmpty(projectName) || string.IsNullOrEmpty(managerID))
+            if (string.IsNullOrEmpty(projectID) || string.IsNullOrEmpty(projectName) || string.IsNullOrEmpty(deptID))
             {
                 MessageBox.Show("Please fill in all required fields.");
+                return;
+            }
+
+            if (dtpStartDate.Value > dtpEndDate.Value)
+            {
+                MessageBox.Show("Start Date cannot be later than End Date.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -115,16 +128,16 @@ namespace IIMS_Final_Project
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "UPDATE Projects SET ProjectName = @ProjectName, ProjectDescription = @ProjectDescription, " +
-                                   "StartDate = @StartDate, EndDate = @EndDate, ManagerID = @ManagerID WHERE ProjectID = @ProjectID";
+                    string query = "UPDATE Project SET project_name = @ProjectName, projectDescription = @ProjectDescription, " +
+                                   "start_date = @StartDate, end_date = @EndDate, department_id = @department_id WHERE project_id = @project_id";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ProjectID", projectID);
+                    cmd.Parameters.AddWithValue("@project_id", projectID);
                     cmd.Parameters.AddWithValue("@ProjectName", projectName);
                     cmd.Parameters.AddWithValue("@ProjectDescription", projectDescription);
                     cmd.Parameters.AddWithValue("@StartDate", startDate);
                     cmd.Parameters.AddWithValue("@EndDate", endDate);
-                    cmd.Parameters.AddWithValue("@ManagerID", managerID);
+                    cmd.Parameters.AddWithValue("@department_id", deptID);
 
                     cmd.ExecuteNonQuery();  // Execute the update query
                     MessageBox.Show("Project Updated!");
@@ -155,7 +168,7 @@ namespace IIMS_Final_Project
                 using (MySqlConnection conn = new MySqlConnection(connectionString))
                 {
                     conn.Open();
-                    string query = "DELETE FROM Projects WHERE ProjectID = @ProjectID";
+                    string query = "DELETE FROM Project WHERE project_id = @ProjectID";
 
                     MySqlCommand cmd = new MySqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@ProjectID", projectID);
@@ -179,7 +192,7 @@ namespace IIMS_Final_Project
             txtProjectID.Clear();
             txtProjectName.Clear();
             txtProjectDescription.Clear();
-            txtManagerID.Clear();
+            txtDeptID.Clear();
             dtpStartDate.Value = DateTime.Now;
             dtpEndDate.Value = DateTime.Now;
         }

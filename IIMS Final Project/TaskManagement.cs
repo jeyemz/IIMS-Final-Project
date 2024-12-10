@@ -15,7 +15,7 @@ namespace IIMS_Final_Project
 {
     public partial class TaskManagement : Form
     {
-        private string connectionString = "Server=localhost;Database=iims_finalproject;User=root;Password=;Port=3307";
+        private string connectionString = "Server=localhost;Database=iims_finalproject;User=root;Password=peybi29INC; Port=3306";
 
         public TaskManagement()
         {

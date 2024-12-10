@@ -16,7 +16,7 @@ namespace IIMS_Final_Project
     public partial class Reports : Form
     {
         // Establish a connection to the MySQL database
-        private readonly MySqlConnection con = new MySqlConnection("server=localhost; uid=root; pwd=; database=iims_finalproject; Port=3307");
+        private readonly MySqlConnection con = new MySqlConnection("server=localhost; uid=root; pwd=peybi29INC; database=iims_finalproject; Port=3306");
         private string selectedReportType = "";
         private string baseQuery = "";
 

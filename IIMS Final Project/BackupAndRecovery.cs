@@ -17,9 +17,9 @@ namespace IIMS_Final_Project
         // Database Configuration
         private const string Server = "localhost";
         private const string User = "root";
-        private const string Password = "";
+        private const string Password = "peybi29INC";
         private const string Database = "iims_finalproject";
-        private const int Port = 3307;
+        private const int Port = 3306;
 
         public BackupAndRecovery()
         {

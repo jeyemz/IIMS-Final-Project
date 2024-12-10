@@ -15,7 +15,7 @@ namespace IIMS_Final_Project
     public partial class EmployeeLogin : Form
     {
         // Establish Database Connection
-        MySqlConnection con = new MySqlConnection("server=localhost; uid=root; pwd=; database=iims_finalproject; Port=3307");
+        MySqlConnection con = new MySqlConnection("server=localhost; uid=root; pwd=peybi29INC; database=iims_finalproject; Port=3306");
 
         public EmployeeLogin()
         {
@@ -113,7 +113,7 @@ namespace IIMS_Final_Project
 
         private void txtbox_Password_TextChanged(object sender, EventArgs e)
         {
-
+            txtbox_Password.PasswordChar = '*';
         }
 
         private void lbl_Password_Click(object sender, EventArgs e)

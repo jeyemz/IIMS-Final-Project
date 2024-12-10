@@ -15,7 +15,7 @@ namespace IIMS_Final_Project
 {
     public partial class EmployeeManagement : Form
     {
-        string connectionString = "Server=localhost;Database=iims_finalproject;User ID=root;Password=;";
+        string connectionString = "Server=localhost;Database=iims_finalproject;User ID=root;Password=peybi29INC";
         MySqlConnection connection;
 
         public EmployeeManagement()
@@ -37,7 +37,7 @@ namespace IIMS_Final_Project
                 try
                 {
                     conn.Open();
-                    string query = "SELECT e.employee_id, e.first_name, e.last_name, e.email, d.department_name, e.hire_date " +
+                    string query = "SELECT e.employee_id, e.first_name, e.last_name, e.email, d.department_name, e.password, e.hire_date " +
                                    "FROM Employee e LEFT JOIN Department d ON e.department_id = d.department_id";
                     MySqlDataAdapter adapter = new MySqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();

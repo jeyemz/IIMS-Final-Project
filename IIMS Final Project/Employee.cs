@@ -14,7 +14,7 @@ namespace IIMS_Final_Project
     public partial class Employee : Form
     {
         // Establish Database Connection
-        MySqlConnection con = new MySqlConnection("server=localhost; uid=root; pwd=; database=iims_finalproject; Port=3307");
+        MySqlConnection con = new MySqlConnection("server=localhost; uid=root; pwd=peybi29INC; database=iims_finalproject; Port=3306");
 
         public Employee()
         {

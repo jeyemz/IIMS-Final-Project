@@ -67,7 +67,7 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(101, 65);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(283, 55);
+            this.label1.Size = new System.Drawing.Size(233, 46);
             this.label1.TabIndex = 14;
             this.label1.Text = "Admin Login";
             // 
@@ -119,7 +119,7 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(86, 196);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(219, 26);
+            this.textBox2.Size = new System.Drawing.Size(219, 22);
             this.textBox2.TabIndex = 1;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
@@ -129,7 +129,7 @@
             this.label5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.Location = new System.Drawing.Point(83, 178);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(97, 25);
+            this.label5.Size = new System.Drawing.Size(80, 20);
             this.label5.TabIndex = 13;
             this.label5.Text = "Password:";
             // 
@@ -139,15 +139,15 @@
             this.label2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(83, 130);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(108, 25);
+            this.label2.Size = new System.Drawing.Size(84, 20);
             this.label2.TabIndex = 10;
-            this.label2.Text = "First Name:";
+            this.label2.Text = "Username:";
             // 
             // textBox1
             // 
             this.textBox1.Location = new System.Drawing.Point(86, 148);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(219, 26);
+            this.textBox1.Size = new System.Drawing.Size(219, 22);
             this.textBox1.TabIndex = 0;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 

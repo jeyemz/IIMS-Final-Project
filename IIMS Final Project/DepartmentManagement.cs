@@ -16,7 +16,7 @@ namespace IIMS_Final_Project
     public partial class DepartmentManagement : Form
     {
         // Connection string to MySQL database
-        private string connectionString = "Server=localhost;Port=3306;Database=iims_finalproject;Uid=root;Pwd=;";
+        private string connectionString = "Server=localhost;Port=3306;Database=iims_finalproject;Uid=root;Pwd=peybi29INC";
 
         public DepartmentManagement()
         {
